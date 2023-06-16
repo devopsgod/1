@@ -1,0 +1,16 @@
+databaseChangeLog:
+- include:
+    file: competition/db.changelog-faculty.yaml
+    relativeToChangelogFile: true
+- include:
+    file: competition/db.changelog-education-document-type.yaml
+    relativeToChangelogFile: true
+- include:
+    file: competition/db.changelog-subject.yaml
+    relativeToChangelogFile: true
+- include:
+    file: competition/db.changelog-speciality-group.yaml
+    relativeToChangelogFile: true
+- include:
+    file: competition/db.changelog-speciality.yaml
+    relativeToChangelogFile: true

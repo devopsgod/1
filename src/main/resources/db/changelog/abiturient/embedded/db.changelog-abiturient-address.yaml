@@ -1,0 +1,152 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_abiturient_address_table
+      author: maksim.hlushneu@gmail.com
+      changes:
+        - createTable:
+            tableName: ab_address
+            columns:
+              - column:
+                  name: ab_adr_id
+                  type: BigInt
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_ab_address
+              - column:
+                  name: ab_adr_post_code
+                  type: varchar(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_adr_region
+                  type: varchar(100)
+              - column:
+                  name: ab_adr_district
+                  type: varchar(100)
+              - column:
+                  name: ab_adr_city
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_adr_street
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_adr_house
+                  type: varchar(5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_adr_building
+                  type: varchar(5)
+              - column:
+                  name: ab_adr_apartment
+                  type: varchar(5)
+              - column:
+                  name: ab_adr_phone
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: add_additional_fields_for_address
+      author: maksim.hlushneu@gmail.com
+      changes:
+        - addColumn:
+            tableName: ab_address
+            columns:
+              - column:
+                  name: ab_adr_country
+                  type: varchar(40)
+              - column:
+                  name: ab_adr_country_in
+                  type: varchar(40)
+              - column:
+                  name: ab_adr_region_in
+                  type: varchar(100)
+              - column:
+                  name: ab_adr_district_in
+                  type: varchar(100)
+              - column:
+                  name: ab_adr_city_in
+                  type: varchar(100)
+              - column:
+                  name: ab_adr_street_in
+                  type: varchar(100)
+              - column:
+                  name: ab_adr_house_in
+                  type: varchar(5)
+              - column:
+                  name: ab_adr_building_in
+                  type: varchar(5)
+              - column:
+                  name: ab_adr_apartment_in
+                  type: varchar(5)
+  - changeSet:
+      id: update_abiturient_with_empty_data
+      author: maksim.hlushneu@gmail.com
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: script/update-abiturient-address-info.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: add_not_null_constraints_to_additional_address_fields
+      author: maksim.hlushneu@gmail.com
+      validCheckSum: 8:54b53741be7d7a0e945f356679d16942
+      changes:
+        - addNotNullConstraint:
+            columnName: ab_adr_country
+            tableName: ab_address
+        - addNotNullConstraint:
+            columnName: ab_adr_country_in
+            tableName: ab_address
+        - addNotNullConstraint:
+            columnName: ab_adr_region_in
+            tableName: ab_address
+        - addNotNullConstraint:
+            columnName: ab_adr_district_in
+            tableName: ab_address
+        - addNotNullConstraint:
+            columnName: ab_adr_city_in
+            tableName: ab_address
+        - addNotNullConstraint:
+            columnName: ab_adr_street_in
+            tableName: ab_address
+        - addNotNullConstraint:
+            columnName: ab_adr_house_in
+            tableName: ab_address
+  - changeSet:
+      id: add_postcodeIn_field_for_address
+      author: wadimchik@mail.ru
+      changes:
+        - addColumn:
+            tableName: ab_address
+            columns:
+              - column:
+                  name: ab_adr_post_code_in
+                  type: varchar(6)
+  - changeSet:
+      id: update_abiturient_postcodeIn_with_empty_data
+      author: wadimchik@mail.ru
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: script/update-abiturient-postcodeIn-info.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: add_not_null_constraints_to_postcodeIn_address_fields
+      author: wadimchik@mail.ru
+      changes:
+        - addNotNullConstraint:
+            columnName: ab_adr_post_code_in
+            tableName: ab_address

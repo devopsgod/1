@@ -1,0 +1,102 @@
+databaseChangeLog:
+- changeSet:
+    id: create_abiturient_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: abiturient
+        columns:
+        - column:
+            name: a_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_abiturient
+        - column:
+            name: a_email
+            type: varchar(100)
+            constraints:
+              nullable: false
+        - column:
+            name: a_is_profile_filled
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: a_is_address_filled
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: a_is_education_filled
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: a_is_competition_info_filled
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: a_is_additional_info_filled
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: a_is_profile_approved
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: a_is_deleted
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: ab_p_id
+            type: BigInt
+        - column:
+            name: ab_adr_id
+            type: BigInt
+        - column:
+            name: ab_ed_id
+            type: BigInt
+        - column:
+            name: ab_add_id
+            type: BigInt
+    - addUniqueConstraint:
+        columnNames: a_email
+        constraintName: uc_abiturient_a_email
+        tableName: abiturient
+    - addForeignKeyConstraint:
+        baseColumnNames: ab_p_id
+        baseTableName: abiturient
+        constraintName: fk_abiturient_profile
+        referencedColumnNames: ab_p_id
+        referencedTableName: ab_profile
+    - addForeignKeyConstraint:
+        baseColumnNames: ab_adr_id
+        baseTableName: abiturient
+        constraintName: fk_abiturient_address
+        referencedColumnNames: ab_adr_id
+        referencedTableName: ab_address
+    - addForeignKeyConstraint:
+        baseColumnNames: ab_ed_id
+        baseTableName: abiturient
+        constraintName: fk_abiturient_education
+        referencedColumnNames: ab_ed_id
+        referencedTableName: ab_education
+    - addForeignKeyConstraint:
+        baseColumnNames: ab_add_id
+        baseTableName: abiturient
+        constraintName: fk_abiturient_additional
+        referencedColumnNames: ab_add_id
+        referencedTableName: ab_additional

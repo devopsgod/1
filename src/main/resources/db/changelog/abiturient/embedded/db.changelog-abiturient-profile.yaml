@@ -1,0 +1,121 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_abiturient_profile_table
+      author: maksim.hlushneu@gmail.com
+      changes:
+        - createTable:
+            tableName: ab_profile
+            columns:
+              - column:
+                  name: ab_p_id
+                  type: BigInt
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_ab_profile
+              - column:
+                  name: ab_p_first_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_p_last_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_p_middle_name
+                  type: varchar(50)
+              - column:
+                  name: dt_id
+                  type: BigInt
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_p_document_seria
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_p_document_date
+                  type: TIMESTAMP WITHOUT TIME ZONE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_p_document_number
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_p_document_organ
+                  type: varchar(150)
+              - column:
+                  name: ab_p_birth_date
+                  type: TIMESTAMP WITHOUT TIME ZONE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_p_birth_place
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: n_id
+                  type: BigInt
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ab_p_identification_number
+                  type: varchar(20)
+              - column:
+                  name: ab_p_sex
+                  type: smallint
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: dt_id
+            baseTableName: ab_profile
+            constraintName: fk_ab_profile_doc_type
+            referencedColumnNames: dt_id
+            referencedTableName: document_type
+        - addForeignKeyConstraint:
+            baseColumnNames: n_id
+            baseTableName: ab_profile
+            constraintName: fk_ab_profile_nationality
+            referencedColumnNames: n_id
+            referencedTableName: nationality
+  - changeSet:
+      id: add_fields_to_abiturient_profile_table
+      author: maksim.hlushneu@gmail.com
+      changes:
+        - addColumn:
+            tableName: ab_profile
+            columns:
+              - column:
+                  name: ab_p_first_name_en
+                  type: varchar(50)
+              - column:
+                  name: ab_p_last_name_en
+                  type: varchar(50)
+  - changeSet:
+      id: update_abiturient_profile_table_with_empty_data
+      author: maksim.hlushneu@gmail.com
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: script/update-empty-abiturient-english-name.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: add_not_null_constraints_to_abiturient_english_names
+      author: maksim.hlushneu@gmail.com
+      changes:
+        - addNotNullConstraint:
+            columnName: ab_p_first_name_en
+            tableName: ab_profile
+        - addNotNullConstraint:
+            columnName: ab_p_last_name_en
+            tableName: ab_profile

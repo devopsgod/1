@@ -1,0 +1,41 @@
+databaseChangeLog:
+- changeSet:
+    id: create_speciality_group_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: speciality_group
+        columns:
+        - column:
+            name: sg_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_speciality_group
+        - column:
+            name: sg_name
+            type: varchar(75)
+            constraints:
+              nullable: false
+        - column:
+            name: sg_is_multi_select
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        columnNames: sg_name
+        constraintName: uc_speciality_group_sg_name
+        tableName: speciality_group
+- changeSet:
+    id: initialize_speciality_groups
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-speciality-group.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

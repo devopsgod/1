@@ -1,0 +1,16 @@
+databaseChangeLog:
+- include:
+    file: education/db.changelog-education-level.yaml
+    relativeToChangelogFile: true
+- include:
+    file: education/db.changelog-education-type.yaml
+    relativeToChangelogFile: true
+- include:
+    file: education/db.changelog-establishment-city.yaml
+    relativeToChangelogFile: true
+- include:
+    file: education/db.changelog-language.yaml
+    relativeToChangelogFile: true
+- include:
+    file: education/db.changelog-education-institution.yaml
+    relativeToChangelogFile: true

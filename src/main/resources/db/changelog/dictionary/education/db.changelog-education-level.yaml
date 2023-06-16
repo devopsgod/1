@@ -1,0 +1,35 @@
+databaseChangeLog:
+- changeSet:
+    id: create_education_level_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: education_level
+        columns:
+        - column:
+            name: el_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_education_level
+        - column:
+            name: el_name
+            type: varchar(75)
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        columnNames: el_name
+        constraintName: uc_education_level_el_name
+        tableName: education_level
+- changeSet:
+    id: initialize_education_levels
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-education-level.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

@@ -1,0 +1,46 @@
+databaseChangeLog:
+- changeSet:
+    id: create_abiturient_additional_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: ab_additional
+        columns:
+        - column:
+            name: ab_add_id
+            type: BigInt
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_ab_additional
+        - column:
+            name: ab_add_father_fio
+            type: varchar(150)
+        - column:
+            name: ab_add_father_work
+            type: varchar(150)
+        - column:
+            name: ab_add_father_phone
+            type: varchar(50)
+        - column:
+            name: ab_add_mother_fio
+            type: varchar(150)
+        - column:
+            name: ab_add_mother_work
+            type: varchar(150)
+        - column:
+            name: ab_add_mother_phone
+            type: varchar(50)
+        - column:
+            name: ab_add_child_count
+            type: smallint
+        - column:
+            name: ab_add_work_place
+            type: varchar(150)
+        - column:
+            name: ab_add_experience
+            type: smallint
+        - column:
+            name: ab_add_is_re_admission
+            type: BOOLEAN

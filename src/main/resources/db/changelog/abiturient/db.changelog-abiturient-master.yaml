@@ -1,0 +1,22 @@
+databaseChangeLog:
+- include:
+    file: embedded/db.changelog-abiturient-additional.yaml
+    relativeToChangelogFile: true
+- include:
+    file: embedded/db.changelog-abiturient-address.yaml
+    relativeToChangelogFile: true
+- include:
+    file: embedded/db.changelog-abiturient-education.yaml
+    relativeToChangelogFile: true
+- include:
+    file: embedded/db.changelog-abiturient-profile.yaml
+    relativeToChangelogFile: true
+- include:
+    file: embedded/db.changelog-abiturient.yaml
+    relativeToChangelogFile: true
+- include:
+    file: embedded/db.changelog-abiturient-speciality.yaml
+    relativeToChangelogFile: true
+- include:
+    file: embedded/db.changelog-abiturient-document.yaml
+    relativeToChangelogFile: true

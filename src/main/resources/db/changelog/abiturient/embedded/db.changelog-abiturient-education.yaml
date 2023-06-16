@@ -1,0 +1,66 @@
+databaseChangeLog:
+- changeSet:
+    id: create_abiturient_education_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: ab_education
+        columns:
+        - column:
+            name: ab_ed_id
+            type: BigInt
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_ab_education
+        - column:
+            name: el_id
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: ei_id
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: ab_ed_end_year
+            type: integer
+            constraints:
+              nullable: false
+        - column:
+            name: l_id
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: ab_ed_gold_medalist
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: ab_ed_honours
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+    - addForeignKeyConstraint:
+        baseColumnNames: el_id
+        baseTableName: ab_education
+        constraintName: fk_ab_education_level
+        referencedColumnNames: el_id
+        referencedTableName: education_level
+    - addForeignKeyConstraint:
+        baseColumnNames: ei_id
+        baseTableName: ab_education
+        constraintName: fk_ab_education_institution
+        referencedColumnNames: ei_id
+        referencedTableName: education_institution
+    - addForeignKeyConstraint:
+        baseColumnNames: l_id
+        baseTableName: ab_education
+        constraintName: fk_ab_education_language
+        referencedColumnNames: l_id
+        referencedTableName: language

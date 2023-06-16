@@ -1,0 +1,68 @@
+buildscript {
+    ext {
+        springBootVersion = '2.2.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'by.vstu'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    springCloudVersion = 'Hoxton.SR3'
+    springBootVersion = '2.2.5.RELEASE'
+}
+
+dependencies {
+    // Spring starters
+    compile(
+            'org.springframework.cloud:spring-cloud-starter-config',
+            'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client',
+            'org.springframework.cloud:spring-cloud-starter-feign:1.4.7.RELEASE',
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-mail',
+            'org.springframework.boot:spring-boot-starter-thymeleaf'
+    )
+
+    // DB depends
+    runtime('org.postgresql:postgresql')
+    compile(
+            'org.springframework.boot:spring-boot-starter-data-jpa',
+            'org.liquibase:liquibase-core'
+    )
+
+    // Oauth depends
+    compile(
+            'org.springframework.security.oauth:spring-security-oauth2:2.3.4.RELEASE',
+            'org.springframework.boot:spring-boot-starter-security',
+            'org.springframework.security:spring-security-jwt:1.1.0.RELEASE'
+    )
+
+    compile('org.projectlombok:lombok:1.18.2')
+    annotationProcessor('org.projectlombok:lombok')
+
+    compile('org.apache.commons:commons-lang3')
+    compile('com.google.guava:guava')
+
+    compile('org.modelmapper:modelmapper:2.0.0')
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}

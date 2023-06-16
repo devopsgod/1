@@ -1,0 +1,41 @@
+databaseChangeLog:
+- changeSet:
+    id: create_subject_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: subject
+        columns:
+        - column:
+            name: s_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_subject
+        - column:
+            name: s_name
+            type: varchar(150)
+            constraints:
+              nullable: false
+        - column:
+            name: s_is_internal
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        columnNames: s_name, s_is_internal
+        constraintName: uc_subject_s_name
+        tableName: subject
+- changeSet:
+    id: initialize_subjects
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-subject.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

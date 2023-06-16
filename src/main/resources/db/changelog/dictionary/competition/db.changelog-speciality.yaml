@@ -1,0 +1,85 @@
+databaseChangeLog:
+- changeSet:
+    id: create_speciality_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: speciality
+        columns:
+        - column:
+            name: sp_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_speciality
+        - column:
+            name: sp_name
+            type: varchar(150)
+            constraints:
+              nullable: false
+        - column:
+            name: sp_education_time
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: sp_education_form
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: sp_is_free
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+        - column:
+            name: sp_plan
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: sp_current_sum
+            type: Float
+        - column:
+            name: sp_half_sum
+            type: Float
+            defaultValue: 0
+        - column:
+            name: f_id
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: sg_id
+            type: BigInt
+            constraints:
+              nullable: false
+    - addForeignKeyConstraint:
+        baseColumnNames: f_id
+        baseTableName: speciality
+        constraintName: fk_speciality_faculty
+        referencedColumnNames: f_id
+        referencedTableName: faculty
+    - addForeignKeyConstraint:
+        baseColumnNames: sg_id
+        baseTableName: speciality
+        constraintName: fk_speciality_speciality_group
+        referencedColumnNames: sg_id
+        referencedTableName: speciality_group
+    - addUniqueConstraint:
+        columnNames: sp_id, sp_education_time, sp_education_form
+        constraintName: uc_speciality_id
+        tableName: speciality
+- changeSet:
+    id: initialize_specialities
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-speciality.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

@@ -1,0 +1,35 @@
+databaseChangeLog:
+- changeSet:
+    id: create_language_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: language
+        columns:
+        - column:
+            name: l_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_language
+        - column:
+            name: l_name
+            type: varchar(75)
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        columnNames: l_name
+        constraintName: uc_language_l_name
+        tableName: language
+- changeSet:
+    id: initialize_languages
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-language.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

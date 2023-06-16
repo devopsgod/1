@@ -1,0 +1,35 @@
+databaseChangeLog:
+- changeSet:
+    id: create_faculty_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: faculty
+        columns:
+        - column:
+            name: f_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_faculty
+        - column:
+            name: f_name
+            type: varchar(150)
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        columnNames: f_name
+        constraintName: uc_faculty_f_name
+        tableName: faculty
+- changeSet:
+    id: initialize_faculties
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-faculty.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

@@ -1,0 +1,74 @@
+databaseChangeLog:
+- changeSet:
+    id: create_abiturient_document_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: document
+        columns:
+        - column:
+            name: d_id
+            type: BigInt
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_abiturient_document
+        - column:
+            name: a_id
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: s_id
+            type: BigInt
+        - column:
+            name: edt_id
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: d_seria
+            type: varchar(5)
+        - column:
+            name: d_number
+            type: varchar(15)
+        - column:
+            name: d_name_uo
+            type: varchar(250)
+        - column:
+            name: d_scale
+            type: varchar(30)
+        - column:
+            name: d_marks
+            type: BYTEA
+            constraints:
+              nullable: false
+        - column:
+            name: d_mark_ten
+            type: DOUBLE
+            constraints:
+              nullable: false
+        - column:
+            name: d_mark_hundred
+            type: BigInt
+            constraints:
+              nullable: false
+    - addForeignKeyConstraint:
+        baseColumnNames: a_id
+        baseTableName: document
+        constraintName: fk_document_abiturient
+        referencedColumnNames: a_id
+        referencedTableName: abiturient
+    - addForeignKeyConstraint:
+        baseColumnNames: edt_id
+        baseTableName: document
+        constraintName: fk_document_doc_type
+        referencedColumnNames: edt_id
+        referencedTableName: ed_doc_type
+    - addForeignKeyConstraint:
+        baseColumnNames: s_id
+        baseTableName: document
+        constraintName: fk_document_subject
+        referencedColumnNames: s_id
+        referencedTableName: subject

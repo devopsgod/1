@@ -1,0 +1,80 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body style="margin: 0;">
+<table width="100%">
+    <tr>
+        <td>
+            <table cellspacing="0" cellpadding="0" border="0" align="center"
+                   style="margin: 0 auto; font-family: Arial; color: #404040; line-height: 16px; font-size: 14px;">
+                <tr>
+                    <td>
+                        <table cellpadding="0" border="0" cellspacing="0" bgcolor="#fafafa" align="center"
+                               style="border-collapse: collapse;">
+                            <tbody>
+                            <tr bgcolor="#3A4766">
+                                <td height="53" style="font-size: 1px">&nbsp;</td>
+                            </tr>
+                            <tr bgcolor="#3A4766" align="center">
+                                <td style="color: #9FA4AF; font-size: 20px; line-height: 35px; font-family: Arial;text-align: center">
+                                    <b>Exception class:</b> <span th:text="${class}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="40" style="font-size: 1px; line-height: 1px">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 18px; line-height: 21px; color: #404040; font-family: Arial; padding: 0 32px;">
+                                    <b>Remote address:</b> <span th:text="${remoteAddr}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="10" style="font-size: 1px; line-height: 1px">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 18px; line-height: 21px; color: #404040; font-family: Arial; padding: 0 32px;">
+                                    <b>Request URI:</b> <span th:text="${requestUri}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="10" style="font-size: 1px; line-height: 1px">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 18px; line-height: 21px; color: #404040; font-family: Arial; padding: 0 32px;">
+                                    <b>Request method:</b> <span th:text="${requestMethod}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="40" style="font-size: 1px; line-height: 1px">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 18px; line-height: 21px; color: #404040; font-family: Arial; padding: 0 32px;">
+                                    <b>Exception message:</b> <span th:text="${message}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="40" style="font-size: 1px; line-height: 1px">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 18px; line-height: 21px; color: #404040; font-family: Arial; padding: 0 32px;">
+                                    <span th:utext="${stacktrace}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="40" style="font-size: 1px; line-height: 1px">&nbsp;</td>
+                            </tr>
+                            <tr bgcolor="#3A4766">
+                                <td style="color: #9FA4AF; font-size: 12px; padding: 20px 32px 25px;">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td width="41" height="37" style="font-size: 1px; line-height: 1px">&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+databaseChangeLog:
+- changeSet:
+    id: create_abiturient_speciality_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: abiturient_speciality
+        columns:
+        - column:
+            name: as_id
+            type: BigInt
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_abiturient_speciality
+        - column:
+            name: a_id
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: sp_id
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: as_order
+            type: BigInt
+            constraints:
+              nullable: false
+    - addForeignKeyConstraint:
+        baseColumnNames: a_id
+        baseTableName: abiturient_speciality
+        constraintName: fk_ab_spec
+        referencedColumnNames: a_id
+        referencedTableName: abiturient
+    - addForeignKeyConstraint:
+        baseColumnNames: sp_id
+        baseTableName: abiturient_speciality
+        constraintName: fk_ab_spec_ab
+        referencedColumnNames: sp_id
+        referencedTableName: speciality

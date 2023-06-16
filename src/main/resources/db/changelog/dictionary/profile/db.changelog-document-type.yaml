@@ -1,0 +1,35 @@
+databaseChangeLog:
+- changeSet:
+    id: create_document_type_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: document_type
+        columns:
+        - column:
+            name: dt_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_document_type
+        - column:
+            name: dt_name
+            type: varchar(100)
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        columnNames: dt_name
+        constraintName: uc_document_type_dt_name
+        tableName: document_type
+- changeSet:
+    id: initialize_document_types
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-document-type.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

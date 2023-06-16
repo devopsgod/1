@@ -1,0 +1,7 @@
+databaseChangeLog:
+- include:
+    file: profile/db.changelog-nationality.yaml
+    relativeToChangelogFile: true
+- include:
+    file: profile/db.changelog-document-type.yaml
+    relativeToChangelogFile: true

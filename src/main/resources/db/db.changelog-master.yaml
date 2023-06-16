@@ -1,0 +1,13 @@
+databaseChangeLog:
+- include:
+    file: changelog/dictionary/db.changelog-competition-dictionary.yaml
+    relativeToChangelogFile: true
+- include:
+    file: changelog/dictionary/db.changelog-education-dictionary.yaml
+    relativeToChangelogFile: true
+- include:
+    file: changelog/dictionary/db.changelog-profile-dictionary.yaml
+    relativeToChangelogFile: true
+- include:
+    file: changelog/abiturient/db.changelog-abiturient-master.yaml
+    relativeToChangelogFile: true

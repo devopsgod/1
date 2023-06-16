@@ -1,0 +1,68 @@
+databaseChangeLog:
+- changeSet:
+    id: create-education-institution-sequence
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createSequence:
+        incrementBy: 1
+        sequenceName: education_institution_ei_id_seq
+        startValue: 3500
+- changeSet:
+    id: create_education_institution_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: education_institution
+        columns:
+        - column:
+            name: ei_id
+            type: BigInt
+            defaultValueSequenceNext: education_institution_ei_id_seq
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_education_institution
+        - column:
+            name: ei_name
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: et_id
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: ec_id
+            type: BigInt
+            constraints:
+              nullable: false
+        - column:
+            name: ei_is_temp
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+    - addForeignKeyConstraint:
+        baseColumnNames: et_id
+        baseTableName: education_institution
+        constraintName: fk_education_institution_type
+        referencedColumnNames: et_id
+        referencedTableName: education_type
+    - addForeignKeyConstraint:
+        baseColumnNames: ec_id
+        baseTableName: education_institution
+        constraintName: fk_education_institution_establishment
+        referencedColumnNames: ec_id
+        referencedTableName: establishment_city
+- changeSet:
+    id: initialize_education_institutions
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-education-institution.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

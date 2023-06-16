@@ -1,0 +1,41 @@
+databaseChangeLog:
+- changeSet:
+    id: create_education_document_type_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: ed_doc_type
+        columns:
+        - column:
+            name: edt_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_ed_doc_type
+        - column:
+            name: edt_name
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: edt_is_internal
+            type: BOOLEAN
+            defaultValue: false
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        columnNames: edt_name
+        constraintName: uc_ed_doc_type_edt_name
+        tableName: ed_doc_type
+- changeSet:
+    id: initialize_education_document_types
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-ed-doc-type.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

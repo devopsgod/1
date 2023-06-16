@@ -1,0 +1,35 @@
+databaseChangeLog:
+- changeSet:
+    id: create_establishment_city_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: establishment_city
+        columns:
+        - column:
+            name: ec_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_establishment_city
+        - column:
+            name: ec_name
+            type: varchar(75)
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        columnNames: ec_name
+        constraintName: uc_establishment_city_ec_name
+        tableName: establishment_city
+- changeSet:
+    id: initialize_establishment_cities
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-establishment-city.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true

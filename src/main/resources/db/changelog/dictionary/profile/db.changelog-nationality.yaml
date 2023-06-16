@@ -1,0 +1,35 @@
+databaseChangeLog:
+- changeSet:
+    id: create_nationality_table
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - createTable:
+        tableName: nationality
+        columns:
+        - column:
+            name: n_id
+            type: BigInt
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: pk_nationality
+        - column:
+            name: n_name
+            type: varchar(100)
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        columnNames: n_name
+        constraintName: uc_nationality_n_name
+        tableName: nationality
+- changeSet:
+    id: initialize_nationalities
+    author: maksim.hlushneu@gmail.com
+    changes:
+    - sqlFile:
+        dbms: postgresql
+        encoding: utf8
+        path: init/init-nationality.sql
+        relativeToChangelogFile: true
+        splitStatements: true
+        stripComments: true
