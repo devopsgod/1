@@ -38,7 +38,7 @@ dependencies {
     )
 
     // DB depends
-    runtime('org.postgresql:postgresql')
+    runtimeOnly('org.postgresql:postgresql')
     implementation(
             'org.springframework.boot:spring-boot-starter-data-jpa',
             'org.liquibase:liquibase-core'
