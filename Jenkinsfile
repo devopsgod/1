@@ -7,7 +7,7 @@ node {
     checkout([$class: 'GitSCM', branches: [[name: '*/master']],
       doGenerateSubmoduleConfigurations: false,
       extensions: [], submoduleCfg: [],
-      userRemoteConfigs: [[url: 'https://github.com/devopsgod/1.git']]])
+      userRemoteConfigs: [[url: 'https://github.com/devopsgod/1']]])
   }
 
   stage('Build image') {
